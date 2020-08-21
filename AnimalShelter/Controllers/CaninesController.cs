@@ -37,7 +37,7 @@ namespace AnimalShelter.Controllers
       {
         query = query.Where(entry => entry.Age == age);
       }
-      return _db.Canines.ToList();
+      return query.ToList();
     }
 
     [HttpGet("{id}")]
