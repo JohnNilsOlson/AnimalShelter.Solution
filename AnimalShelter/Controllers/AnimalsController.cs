@@ -17,6 +17,9 @@ namespace AnimalShelter.Controllers
       _db = db;
     }
 
+    /// <summary>
+    /// Returns all entries from the database.
+    /// </summary>
     [HttpGet]
     public ActionResult<IEnumerable<Animal>> Get()
     {

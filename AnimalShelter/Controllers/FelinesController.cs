@@ -17,6 +17,9 @@ namespace AnimalShelter.Controllers
       _db = db;
     }
 
+    /// <summary>
+    /// Returns all feline entries from the database, filterable by name, breed, gender and/or age.
+    /// </summary>
     [HttpGet]
     public ActionResult<IEnumerable<Feline>> Get(string name, string breed, string gender, int age)
     {
@@ -40,12 +43,18 @@ namespace AnimalShelter.Controllers
       return query.ToList();
     }
 
+    /// <summary>
+    /// Returns a single feline entry from the database, by id.
+    /// </summary>
     [HttpGet("{id}")]
     public ActionResult<Feline> GetAction(int id)
     {
       return _db.Felines.FirstOrDefault(entry => entry.AnimalId == id);
     }
 
+    /// <summary>
+    /// Adds a feline entry to the database.
+    /// </summary>
     [HttpPost]
     public void Post([FromBody] Feline feline)
     {
@@ -53,6 +62,9 @@ namespace AnimalShelter.Controllers
       _db.SaveChanges();
     }
 
+    /// <summary>
+    /// Updates a feline entry in the database, by id.
+    /// </summary>
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] Feline feline)
     {
@@ -61,6 +73,9 @@ namespace AnimalShelter.Controllers
       _db.SaveChanges();
     }
 
+    /// <summary>
+    /// Removes a canine entry from the database, by id.
+    /// </summary>
     [HttpDelete("{id}")]
     public void Delete(int id)
     {
