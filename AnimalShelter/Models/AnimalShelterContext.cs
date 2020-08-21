@@ -23,5 +23,6 @@ namespace AnimalShelter.Models
         public DbSet<Reptile> Reptiles { get; set; }
         public DbSet<Rodent> Rodents { get; set; }
         public DbSet<Bird> Birds { get; set; }
+        public DbSet<Equine> Equines { get; set; }
   }
 }
