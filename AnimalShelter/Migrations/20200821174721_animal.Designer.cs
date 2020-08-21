@@ -2,14 +2,16 @@
 using AnimalShelter.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AnimalShelter.Migrations
 {
     [DbContext(typeof(AnimalShelterContext))]
-    partial class AnimalShelterContextModelSnapshot : ModelSnapshot
+    [Migration("20200821174721_animal")]
+    partial class animal
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,42 +47,18 @@ namespace AnimalShelter.Migrations
                 {
                     b.HasBaseType("AnimalShelter.Models.Animal");
 
-                    b.Property<string>("CanineBreed");
+                    b.Property<string>("CanineSpecies");
 
                     b.HasDiscriminator().HasValue("Canine");
-
-                    b.HasData(
-                        new
-                        {
-                            AnimalId = 1,
-                            Age = 7,
-                            Bio = "Loves fetch!",
-                            Gender = "Female",
-                            Name = "Rex",
-                            Weight = 42,
-                            CanineBreed = "Labrador Retreiver"
-                        });
                 });
 
             modelBuilder.Entity("AnimalShelter.Models.Feline", b =>
                 {
                     b.HasBaseType("AnimalShelter.Models.Animal");
 
-                    b.Property<string>("FelineBreed");
+                    b.Property<string>("FelineSpecies");
 
                     b.HasDiscriminator().HasValue("Feline");
-
-                    b.HasData(
-                        new
-                        {
-                            AnimalId = 2,
-                            Age = 3,
-                            Bio = "Loves belly rubs!",
-                            Gender = "Male",
-                            Name = "Whiskers",
-                            Weight = 10,
-                            FelineBreed = "Tabby"
-                        });
                 });
 #pragma warning restore 612, 618
         }

@@ -18,16 +18,16 @@ namespace AnimalShelter.Controllers
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<Canine>> Get(string name, string species, string gender, int age)
+    public ActionResult<IEnumerable<Canine>> Get(string name, string breed, string gender, int age)
     {
       var query = _db.Canines.AsQueryable();
       if (name != null)
       {
         query = query.Where(entry => entry.Name == name);
       }
-      if (species != null)
+      if (breed != null)
       {
-        query = query.Where(entry => entry.Species == species);
+        query = query.Where(entry => entry.CanineBreed == breed);
       }
       if (gender != null)
       {
@@ -43,7 +43,7 @@ namespace AnimalShelter.Controllers
     [HttpGet("{id}")]
     public ActionResult<Canine> GetAction(int id)
     {
-      return _db.Canines.FirstOrDefault(entry => entry.CanineId == id);
+      return _db.Canines.FirstOrDefault(entry => entry.AnimalId == id);
     }
 
     [HttpPost]
@@ -56,7 +56,7 @@ namespace AnimalShelter.Controllers
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] Canine canine)
     {
-      canine.CanineId = id;
+      canine.AnimalId = id;
       _db.Entry(canine).State = EntityState.Modified;
       _db.SaveChanges();
     }
@@ -64,7 +64,7 @@ namespace AnimalShelter.Controllers
     [HttpDelete("{id}")]
     public void Delete(int id)
     {
-      var canine = _db.Canines.FirstOrDefault(entry => entry.CanineId == id);
+      var canine = _db.Canines.FirstOrDefault(entry => entry.AnimalId == id);
       _db.Canines.Remove(canine);
       _db.SaveChanges();
     }

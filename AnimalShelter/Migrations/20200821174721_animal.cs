@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AnimalShelter.Migrations
 {
-    public partial class animals : Migration
+    public partial class animal : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -18,32 +18,23 @@ namespace AnimalShelter.Migrations
                 name: "Felines",
                 newName: "Animals");
 
-            migrationBuilder.AlterColumn<int>(
+            migrationBuilder.RenameColumn(
+                name: "Species",
+                table: "Animals",
+                newName: "FelineSpecies");
+
+            migrationBuilder.RenameColumn(
                 name: "FelineId",
                 table: "Animals",
-                nullable: true,
-                oldClrType: typeof(int))
-                .OldAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
-
-            migrationBuilder.AddColumn<int>(
-                name: "AnimalId",
-                table: "Animals",
-                nullable: false,
-                defaultValue: 0)
-                .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                newName: "AnimalId");
 
             migrationBuilder.AddColumn<string>(
                 name: "Discriminator",
                 table: "Animals",
                 nullable: false);
 
-            migrationBuilder.AddColumn<int>(
-                name: "CanineId",
-                table: "Animals",
-                nullable: true);
-
             migrationBuilder.AddColumn<string>(
-                name: "Feline_Species",
+                name: "CanineSpecies",
                 table: "Animals",
                 nullable: true);
 
@@ -60,32 +51,26 @@ namespace AnimalShelter.Migrations
                 table: "Animals");
 
             migrationBuilder.DropColumn(
-                name: "AnimalId",
-                table: "Animals");
-
-            migrationBuilder.DropColumn(
                 name: "Discriminator",
                 table: "Animals");
 
             migrationBuilder.DropColumn(
-                name: "CanineId",
-                table: "Animals");
-
-            migrationBuilder.DropColumn(
-                name: "Feline_Species",
+                name: "CanineSpecies",
                 table: "Animals");
 
             migrationBuilder.RenameTable(
                 name: "Animals",
                 newName: "Felines");
 
-            migrationBuilder.AlterColumn<int>(
-                name: "FelineId",
+            migrationBuilder.RenameColumn(
+                name: "FelineSpecies",
                 table: "Felines",
-                nullable: false,
-                oldClrType: typeof(int),
-                oldNullable: true)
-                .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn);
+                newName: "Species");
+
+            migrationBuilder.RenameColumn(
+                name: "AnimalId",
+                table: "Felines",
+                newName: "FelineId");
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_Felines",

@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AnimalShelter.Migrations
 {
     [DbContext(typeof(AnimalShelterContext))]
-    [Migration("20200821163358_animals")]
-    partial class animals
+    [Migration("20200821181005_breed")]
+    partial class breed
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -47,23 +47,42 @@ namespace AnimalShelter.Migrations
                 {
                     b.HasBaseType("AnimalShelter.Models.Animal");
 
-                    b.Property<int>("CanineId");
-
-                    b.Property<string>("Species");
+                    b.Property<string>("CanineBreed");
 
                     b.HasDiscriminator().HasValue("Canine");
+
+                    b.HasData(
+                        new
+                        {
+                            AnimalId = 1,
+                            Age = 7,
+                            Bio = "Loves fetch!",
+                            Gender = "Female",
+                            Name = "Rex",
+                            Weight = 42,
+                            CanineBreed = "Labrador Retreiver"
+                        });
                 });
 
             modelBuilder.Entity("AnimalShelter.Models.Feline", b =>
                 {
                     b.HasBaseType("AnimalShelter.Models.Animal");
 
-                    b.Property<int>("FelineId");
-
-                    b.Property<string>("Species")
-                        .HasColumnName("Feline_Species");
+                    b.Property<string>("FelineBreed");
 
                     b.HasDiscriminator().HasValue("Feline");
+
+                    b.HasData(
+                        new
+                        {
+                            AnimalId = 2,
+                            Age = 3,
+                            Bio = "Loves belly rubs!",
+                            Gender = "Male",
+                            Name = "Whiskers",
+                            Weight = 10,
+                            FelineBreed = "Tabby"
+                        });
                 });
 #pragma warning restore 612, 618
         }

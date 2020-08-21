@@ -2,14 +2,16 @@
 using AnimalShelter.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AnimalShelter.Migrations
 {
     [DbContext(typeof(AnimalShelterContext))]
-    partial class AnimalShelterContextModelSnapshot : ModelSnapshot
+    [Migration("20200821175509_seeddata")]
+    partial class seeddata
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,7 +47,7 @@ namespace AnimalShelter.Migrations
                 {
                     b.HasBaseType("AnimalShelter.Models.Animal");
 
-                    b.Property<string>("CanineBreed");
+                    b.Property<string>("CanineSpecies");
 
                     b.HasDiscriminator().HasValue("Canine");
 
@@ -58,7 +60,7 @@ namespace AnimalShelter.Migrations
                             Gender = "Female",
                             Name = "Rex",
                             Weight = 42,
-                            CanineBreed = "Labrador Retreiver"
+                            CanineSpecies = "Labrador Retreiver"
                         });
                 });
 
@@ -66,7 +68,7 @@ namespace AnimalShelter.Migrations
                 {
                     b.HasBaseType("AnimalShelter.Models.Animal");
 
-                    b.Property<string>("FelineBreed");
+                    b.Property<string>("FelineSpecies");
 
                     b.HasDiscriminator().HasValue("Feline");
 
@@ -79,7 +81,7 @@ namespace AnimalShelter.Migrations
                             Gender = "Male",
                             Name = "Whiskers",
                             Weight = 10,
-                            FelineBreed = "Tabby"
+                            FelineSpecies = "Tabby"
                         });
                 });
 #pragma warning restore 612, 618
