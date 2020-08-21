@@ -55,6 +55,23 @@ namespace AnimalShelter.Controllers
     /// <summary>
     /// Adds a canine entry to the database.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     POST /Canines
+    ///     {
+    ///        "caninebreed": "German Shepard",
+    ///        "name": "Ramona",
+    ///        "gender": "Female",
+    ///        "age": 2,
+    ///        "weight": 55,
+    ///        "bio": "Sweet, sociable dog with a lot of energy!  Needs work on leash manners."
+    ///     }
+    ///
+    /// </remarks>
+    /// <param name="canine"></param>
+    /// <response code="200">Canine entry successfully added to database.</response>
+    /// <response code="400">Canine entry is not added to the database.</response>
     [HttpPost]
     public void Post([FromBody] Canine canine)
     {
@@ -65,6 +82,23 @@ namespace AnimalShelter.Controllers
     /// <summary>
     /// Updates a canine entry in the database, by id.
     /// </summary>
+    /// <remarks>
+    /// Sample request:
+    ///
+    ///     PUT /Canines
+    ///     {
+    ///        "caninebreed": "German Shepard",
+    ///        "name": "Ramona",
+    ///        "gender": "Female",
+    ///        "age": 2,
+    ///        "weight": 55,
+    ///        "bio": "Sweet, sociable dog with a lot of energy!  Needs work on leash manners."
+    ///     }
+    ///
+    /// </remarks>
+    /// <param name="canine"></param>
+    /// <response code="200">Canine database entry successfully updated.</response>
+    /// <response code="400">Canine database entry not updated.</response>
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] Canine canine)
     {
